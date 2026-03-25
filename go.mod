@@ -4,7 +4,7 @@ go 1.26.1
 
 require (
 	github.com/common-nighthawk/go-figure v0.0.0-20210622060536-734e95fb86be
-	github.com/spf13/cobra v1.8.1
+	github.com/spf13/cobra v1.10.2
 	go.uber.org/zap v1.27.1
 )
 
