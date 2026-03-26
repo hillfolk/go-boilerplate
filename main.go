@@ -14,6 +14,7 @@ import (
 func main() {
 
 	log.Setup(false)
+	defer log.Sync()
 
 	splash := figure.NewColorFigure(version.ServiceName, "", "green", false)
 	splash.Print()

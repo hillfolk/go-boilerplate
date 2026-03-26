@@ -1,9 +1,10 @@
 package version
 
 import (
+	"fmt"
 	"strings"
 
-	"github.com/rs/zerolog/log"
+	"go.uber.org/zap"
 )
 
 const (
@@ -27,18 +28,19 @@ func init() {
 
 // LogVersion simply prints the current version information to the log
 func LogVersion() {
-	log.Info().
-		Str("git-hash", GitHash).
-		Str("git-message", GitCommitMessage).
-		Str("git-branch", GitBranch).
-		Str("git-tag", GitTag).
-		Str("build-time", BuildTime).
-		Msgf(`Version information:
+	zap.L().Info(
+		fmt.Sprintf(`Version information:
 	git-hash: %s
 	git-message: %s
 	git-branch: %s
 	git-tag: %s
 	build-time: %s
 	`,
-			GitHash, GitCommitMessage, GitBranch, GitTag, BuildTime)
+			GitHash, GitCommitMessage, GitBranch, GitTag, BuildTime),
+		zap.String("git-hash", GitHash),
+		zap.String("git-message", GitCommitMessage),
+		zap.String("git-branch", GitBranch),
+		zap.String("git-tag", GitTag),
+		zap.String("build-time", BuildTime),
+	)
 }
